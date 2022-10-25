@@ -1,37 +1,40 @@
 import React from 'https://cdn.skypack.dev/react';
 import ReactDOM from 'https://cdn.skypack.dev/react-dom';
+import htm from 'https://cdn.skypack.dev/htm';
 import * as JpUtils from './utils.js';
 
+const html = htm.bind(React.createElement);
+
 const Word = (props) => {
-  return (
+  return (html`
     <ruby>
-      <rb style={{ color: props.baseColor }}>{props.base}</rb>
+      <rb style=${{ color: props.baseColor }}>${props.base}</rb>
       <rp>(</rp>
-      <rt style={{ color: props.rubyColor }}>{props.ruby}</rt>
+      <rt style=${{ color: props.rubyColor }}>${props.ruby}</rt>
       <rp>)</rp>
     </ruby>
-  );
+  `);
 };
 
 const SubWord = (props) => {
-  return (
-    <sub style={{ fontSize: '0.5em' }}>
-      <Word {...props} />
+  return (html`
+    <sub style=${{ fontSize: '0.5em' }}>
+      <${Word} ...${props} />
     </sub>
-  );
+  `);
 };
 
 const JpWord = (props) => {
-  return (
-    <Word
-      base={props.word.kanji} baseColor={props.word.isDelimiter ? 'blue' : undefined}
-      ruby={props.word.kana} rubyColor={props.word.isAlt ? 'red' : undefined}
+  return (html`
+    <${Word}
+      base=${props.word.kanji} baseColor=${props.word.isDelimiter ? 'blue' : undefined}
+      ruby=${props.word.kana} rubyColor=${props.word.isAlt ? 'red' : undefined}
     />
-  );
+  `);
 };
 
 const Nav = (props) => {
-  return (
+  return (html`
     <nav>
       <ul class="nav justify-content-center">
         <li class="nav-item">
@@ -47,7 +50,7 @@ const Nav = (props) => {
         </li>
       </ul>
     </nav>
-  );
+  `);
 };
 
 const App = (props) => {
@@ -68,50 +71,50 @@ const App = (props) => {
     setCurrentNumber(n);
   }
 
-  return (
+  return (html`
     <div class="container">
       <div class="py-4">
-        <Nav />
+        <${Nav} />
       </div>
       <div
         class="d-flex flex-column justify-content-center align-items-center text-center"
-        style={{ minHeight: '90vh' }}
+        style=${{ minHeight: '90vh' }}
       >
         <div class="my-4">
           <input
             type="number"
             class="text-center"
-            style={{
+            style=${{
               fontSize: numberInputFontSize,
               letterSpacing: '0.1em',
               width: '80vw',
             }}
-            value={String(currentNumber)}
-            onChange={handleCurrentNumberInputChanged}
+            value=${String(currentNumber)}
+            onChange=${handleCurrentNumberInputChanged}
           />
         </div>
         <div class="my-4">
           <span
-            style={{
+            style=${{
               fontSize: '2.5em',
               letterSpacing: '0.2em',
               width: '100%',
             }}
           >
-            {currentWords.map((word) => <JpWord word={word} />)}
+            ${currentWords.map((word) => (html`<${JpWord} word=${word} />`))}
           </span>
         </div>
         <div class="my-4">
           <button
             class="btn btn-lg btn-primary"
-            onClick={handleChangeCurrentNumberButtonClicked}
+            onClick=${handleChangeCurrentNumberButtonClicked}
           >
             Try another number!
           </button>
         </div>
       </div>
     </div>
-  );
+  `);
 };
 
-ReactDOM.render(<App />, document.querySelector('#app'));
+ReactDOM.render((html`<${App} />`), document.querySelector('#app'));
