@@ -1,0 +1,117 @@
+import React from 'https://cdn.skypack.dev/react';
+import ReactDOM from 'https://cdn.skypack.dev/react-dom';
+import * as JpUtils from './utils.js';
+
+const Word = (props) => {
+  return (
+    <ruby>
+      <rb style={{ color: props.baseColor }}>{props.base}</rb>
+      <rp>(</rp>
+      <rt style={{ color: props.rubyColor }}>{props.ruby}</rt>
+      <rp>)</rp>
+    </ruby>
+  );
+};
+
+const SubWord = (props) => {
+  return (
+    <sub style={{ fontSize: '0.5em' }}>
+      <Word {...props} />
+    </sub>
+  );
+};
+
+const JpWord = (props) => {
+  return (
+    <Word
+      base={props.word.kanji} baseColor={props.word.isDelimiter ? 'blue' : undefined}
+      ruby={props.word.kana} rubyColor={props.word.isAlt ? 'red' : undefined}
+    />
+  );
+};
+
+const Nav = (props) => {
+  return (
+    <nav>
+      <ul class="nav justify-content-center">
+        <li class="nav-item">
+          <a class="nav-link disabled">
+            Japanese Numerals
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/zetaraku/JapaneseNumerals">
+            <i class="bi-github me-2" />
+            Source
+          </a>
+        </li>
+      </ul>
+    </nav>
+  );
+};
+
+const App = (props) => {
+  const [currentNumber, setCurrentNumber] = React.useState(4649n);
+
+  const currentNumberLength = String(currentNumber).length;
+  const currentWords = JpUtils.numberToJp(currentNumber) ?? [JpUtils.units.nan];
+  const numberInputFontSize = `calc(${currentNumberLength <= 8 ? '90vw' : '120vw'} / (${Math.ceil(currentNumberLength / 8) * 8 + 4}))`;
+
+  function handleCurrentNumberInputChanged(event) {
+    const n = BigInt(event.target.value);
+    if (n < 0n || n >= 10n ** 72n) return;
+    setCurrentNumber(n);
+  }
+
+  function handleChangeCurrentNumberButtonClicked(event) {
+    const n = BigInt(Math.trunc(Math.random() * 10000));
+    setCurrentNumber(n);
+  }
+
+  return (
+    <div class="container">
+      <div class="py-4">
+        <Nav />
+      </div>
+      <div
+        class="d-flex flex-column justify-content-center align-items-center text-center"
+        style={{ minHeight: '90vh' }}
+      >
+        <div class="my-4">
+          <input
+            type="number"
+            class="text-center"
+            style={{
+              fontSize: numberInputFontSize,
+              letterSpacing: '0.1em',
+              width: '80vw',
+            }}
+            value={String(currentNumber)}
+            onChange={handleCurrentNumberInputChanged}
+          />
+        </div>
+        <div class="my-4">
+          <span
+            style={{
+              fontSize: '2.5em',
+              letterSpacing: '0.2em',
+              width: '100%',
+            }}
+          >
+            {currentWords.map((word) => <JpWord word={word} />)}
+          </span>
+        </div>
+        <div class="my-4">
+          <button
+            class="btn btn-lg btn-primary"
+            onClick={handleChangeCurrentNumberButtonClicked}
+          >
+            Try another number!
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+ReactDOM.render(<App />, document.querySelector('#app'));
