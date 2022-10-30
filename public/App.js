@@ -47,6 +47,11 @@ const Nav = (props) => {
             Source
           </a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://www.free-counter.jp/">
+            <img src="https://www.f-counter.net/j/49/1667103931/" alt="アクセスカウンター" />
+          </a>
+        </li>
       </ul>
     </nav>
   `);
