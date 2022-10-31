@@ -59,6 +59,7 @@ export const units = {
   e68: { kanji: '無量大数', kana: 'むりょうたいすう', isDelimiter: true },
 };
 export const digits = [
+  // 一
   [
     units.n0,
     units.n1,
@@ -71,6 +72,7 @@ export const digits = [
     units.n8,
     units.n9,
   ],
+  // 十
   [
     undefined,
     undefined,
@@ -83,6 +85,7 @@ export const digits = [
     units.n8,
     units.n9,
   ],
+  // 百
   [
     undefined,
     undefined,
@@ -95,6 +98,7 @@ export const digits = [
     units.n8t,
     units.n9,
   ],
+  // 千
   [
     undefined,
     undefined,
@@ -109,7 +113,9 @@ export const digits = [
   ],
 ];
 export const minorDelimiters = [
+  // 一
   undefined,
+  // 十
   [
     undefined,
     units.e1,
@@ -122,6 +128,7 @@ export const minorDelimiters = [
     units.e1,
     units.e1,
   ],
+  // 百
   [
     undefined,
     units.e2,
@@ -134,6 +141,7 @@ export const minorDelimiters = [
     units.e2p,
     units.e2,
   ],
+  // 千
   [
     undefined,
     units.e3,
@@ -148,23 +156,41 @@ export const minorDelimiters = [
   ],
 ];
 export const majorDelimiters = [
+  // 一
   undefined,
+  // 万
   units.e4,
+  // 億
   units.e8,
+  // 兆
   units.e12,
+  // 京
   units.e16,
+  // 垓
   units.e20,
+  // 𥝱
   units.e24,
+  // 穣
   units.e28,
+  // 溝
   units.e32,
+  // 澗
   units.e36,
+  // 正
   units.e40,
+  // 載
   units.e44,
+  // 極
   units.e48,
+  // 恒河沙
   units.e52,
+  // 阿僧祇
   units.e56,
+  // 那由他
   units.e60,
+  // 不可思議
   units.e64,
+  // 無量大数
   units.e68,
 ];
 
