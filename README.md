@@ -2,6 +2,8 @@
 
 A little tool used to practice Japanese numerals. :)
 
+:warning: There are still some incorrect results with numbers above 10000000 to be confirmed and fixed.
+
 This project is built with [React](https://reactjs.org/), [HTM](https://github.com/developit/htm) and [Bootstrap](https://getbootstrap.com/).
 
 Try it here: <https://japanese-numerals.netlify.app/>
