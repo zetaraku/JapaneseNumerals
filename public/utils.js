@@ -113,6 +113,45 @@ export const digits = [
     units.n9,
   ],
 ];
+export const digitsKH = [
+  units.n0,
+  units.n1t,
+  units.n2,
+  units.n3,
+  units.n4,
+  units.n5,
+  units.n6t,
+  units.n7,
+  units.n8t,
+  units.n9,
+  units.e1tc,
+];
+export const digitsST = [
+  units.n0,
+  units.n1t,
+  units.n2,
+  units.n3,
+  units.n4,
+  units.n5,
+  units.n6,
+  units.n7,
+  units.n8t,
+  units.n9,
+  units.e1tc,
+];
+export const digitsOther = [
+  units.n0,
+  units.n1,
+  units.n2,
+  units.n3,
+  units.n4,
+  units.n5,
+  units.n6,
+  units.n7,
+  units.n8,
+  units.n9,
+  units.e1,
+];
 export const minorDelimiters = [
   // 一
   undefined,
@@ -195,6 +234,13 @@ export const majorDelimiters = [
   units.e68,
 ];
 
+function digitBefore(digit, unit) {
+  const nextKana = unit.kana[0];
+  if ([...'かきくけこがぎぐげごはひふへほぱぴぷぺぽばびぶべぼ'].includes(nextKana)) return digitsKH[digit];
+  if ([...'さしすせそざじずぜぞたちつてとだぢづでど'].includes(nextKana)) return digitsST[digit];
+  return digitsOther[digit];
+}
+
 function numberToJpMinor(num, majorDelimiterIndex) {
   const minorScale = 10n;
 
@@ -204,6 +250,10 @@ function numberToJpMinor(num, majorDelimiterIndex) {
   if (n < 0n) return undefined;
 
   if (n === 0n) return [units.n0];
+
+  if (n <= 10n && majorDelimiterIndex > 0) return [
+    digitBefore(Number(n), majorDelimiters[majorDelimiterIndex]),
+  ];
 
   if (n === 1000n && majorDelimiterIndex > 0) return [units.n1t, units.e3];
 
