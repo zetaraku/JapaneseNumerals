@@ -220,34 +220,20 @@ function numberToJpMinor(num, majorDelimiterIndex) {
 }
 
 export function numberToJp(num) {
-  const n = BigInt(num);
+  const majorScale = 10n ** BigInt(minorDelimiters.length);
 
+  const n = BigInt(num);
   const d = [...String(n)].map((c) => Number(c)).reverse();
 
   if (n < 0n) return undefined;
 
-  if (n < 10n) return [
-    digits[0][d[0]],
-  ];
+  if (n === 0n) return [units.n0];
 
-  const minorScale = 10n;
-  for (const [i, delimiterAfter] of minorDelimiters.entries()) {
-    if (delimiterAfter === undefined) continue;
-    const currentDivider = minorScale ** BigInt(i);
-    if (n < currentDivider * minorScale) return [
-      ...(d[i] !== 1 ? [digits[i][d[i]]] : []),
-      delimiterAfter[d[i]],
-      ...(n % currentDivider !== 0n ? numberToJp(n % currentDivider) : []),
-    ];
-  }
-
-  const majorScale = 10n**BigInt(minorDelimiters.length);
   for (const [i, delimiter] of majorDelimiters.entries()) {
-    if (delimiter === undefined) continue;
     const currentDivider = majorScale ** BigInt(i);
     if (n < currentDivider * majorScale) return [
-      ...(numberToJp(n / currentDivider)),
-      delimiter,
+      ...(numberToJpMinor(n / currentDivider, i)),
+      ...(i !== 0 ? [delimiter] : []),
       ...(n % currentDivider !== 0n ? numberToJp(n % currentDivider) : []),
     ];
   }
