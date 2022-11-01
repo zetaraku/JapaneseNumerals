@@ -4,6 +4,7 @@ export const units = {
   n0: { kanji: '零', kana: 'れい' },
   n0z: { kanji: '〇', kana: 'ゼロ' },
   n1: { kanji: '一', kana: 'いち' },
+  n1t: { kanji: '一', kana: 'いっ', isAlt: true },
   n2: { kanji: '二', kana: 'に' },
   n3: { kanji: '三', kana: 'さん' },
   n4: { kanji: '四', kana: 'よん' },
