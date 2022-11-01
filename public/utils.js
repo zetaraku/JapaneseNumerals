@@ -195,6 +195,30 @@ export const majorDelimiters = [
   units.e68,
 ];
 
+function numberToJpMinor(num, majorDelimiterIndex) {
+  const minorScale = 10n;
+
+  const n = BigInt(num);
+  const d = [...String(n)].map((c) => Number(c)).reverse();
+
+  if (n < 0n) return undefined;
+
+  if (n === 0n) return [units.n0];
+
+  if (n === 1000n && majorDelimiterIndex > 0) return [units.n1t, units.e3];
+
+  for (const [i, delimiterAfter] of minorDelimiters.entries()) {
+    const currentDivider = minorScale ** BigInt(i);
+    if (n < currentDivider * minorScale) return [
+      ...(d[i] !== 1 || i === 0 ? [digits[i][d[i]]] : []),
+      ...(i !== 0 ? [delimiterAfter[d[i]]] : []),
+      ...(n % currentDivider !== 0n ? numberToJpMinor(n % currentDivider, majorDelimiterIndex) : []),
+    ];
+  }
+
+  return undefined;
+}
+
 export function numberToJp(num) {
   const n = BigInt(num);
 
