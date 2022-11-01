@@ -42,13 +42,13 @@ const Nav = (props) => {
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="https://github.com/zetaraku/JapaneseNumerals">
+          <a class="nav-link" href="https://github.com/zetaraku/JapaneseNumerals" target="_blank">
             <i class="bi-github me-2" />
             Source
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="https://www.free-counter.jp/">
+          <a class="nav-link" href="https://www.free-counter.jp/" target="_blank">
             <img src="https://www.f-counter.net/j/49/1667103931/" alt="アクセスカウンター" />
           </a>
         </li>
