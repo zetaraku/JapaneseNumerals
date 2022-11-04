@@ -58,7 +58,7 @@ const Nav = (props) => {
 };
 
 const App = (props) => {
-  const [currentNumber, setCurrentNumber] = React.useState(4649n);
+  const [currentNumber, setCurrentNumber] = React.useState(12345n);
 
   const currentNumberLength = String(currentNumber).length;
   const currentWords = JpUtils.numberToJp(currentNumber) ?? [JpUtils.units.nan];
