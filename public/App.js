@@ -94,7 +94,7 @@ const App = (props) => {
               width: '80vw',
             }}
             value=${String(currentNumber)}
-            onChange=${handleCurrentNumberInputChanged}
+            onInput=${handleCurrentNumberInputChanged}
           />
         </div>
         <div class="my-4">
