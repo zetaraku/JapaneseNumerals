@@ -5,4 +5,8 @@ import App from './App.js';
 
 const html = htm.bind(React.createElement);
 
-ReactDOM.render((html`<${App} />`), document.querySelector('#app'));
+ReactDOM.render((html`
+  <${React.StrictMode}>
+    <${App} />
+  <//>
+`), document.querySelector('#app'));
