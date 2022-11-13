@@ -64,13 +64,13 @@ const App = (props) => {
   const currentWords = JpUtils.numberToJp(currentNumber) ?? [JpUtils.units.nan];
   const numberInputFontSize = `calc(${currentNumberLength <= 8 ? '90vw' : '120vw'} / (${Math.ceil(currentNumberLength / 8) * 8 + 4}))`;
 
-  function handleCurrentNumberInputChanged(event) {
+  function handleNumberInput(event) {
     const n = BigInt(event.target.value);
     if (n < 0n || n >= 10n ** 72n) return;
     setCurrentNumber(n);
   }
 
-  function handleChangeCurrentNumberButtonClicked(event) {
+  function handleButtonClick(event) {
     const n = BigInt(Math.trunc(Math.random() * 10000));
     setCurrentNumber(n);
   }
@@ -94,7 +94,7 @@ const App = (props) => {
               width: '80vw',
             }}
             value=${String(currentNumber)}
-            onInput=${handleCurrentNumberInputChanged}
+            onInput=${handleNumberInput}
           />
         </div>
         <div class="my-4">
@@ -111,7 +111,7 @@ const App = (props) => {
         <div class="my-4">
           <button
             class="btn btn-lg btn-primary"
-            onClick=${handleChangeCurrentNumberButtonClicked}
+            onClick=${handleButtonClick}
           >
             Try another number!
           </button>
