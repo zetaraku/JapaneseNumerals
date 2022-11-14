@@ -105,7 +105,9 @@ const App = (props) => {
               width: '100%',
             }}
           >
-            ${currentWords.map((word) => (html`<${JpWord} word=${word} />`))}
+            ${currentWords.map((word) => (html`
+              <${JpWord} word=${word} />
+            `))}
           </span>
         </div>
         <div class="my-4">
