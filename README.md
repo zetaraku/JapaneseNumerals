@@ -6,7 +6,7 @@ A little tool used to practice Japanese numerals. :)
 
 This project is built with [React](https://reactjs.org/), [HTM](https://github.com/developit/htm) and [Bootstrap](https://getbootstrap.com/).
 
-Try it here: <https://japanese-numerals.netlify.app/>
+Try it here: <https://zetaraku.dev/JapaneseNumerals/>
 
 ## Screenshots
 
