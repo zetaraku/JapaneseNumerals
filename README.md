@@ -1,5 +1,7 @@
 # Japanese Numerals
 
+[![Deploy to GitHub Pages](https://github.com/zetaraku/JapaneseNumerals/actions/workflows/github-pages.yaml/badge.svg)](https://github.com/zetaraku/JapaneseNumerals/actions/workflows/github-pages.yaml)
+
 A little tool used to practice Japanese numerals. :)
 
 :warning: There are still some incorrect results with numbers above 10000000 to be confirmed and fixed.
